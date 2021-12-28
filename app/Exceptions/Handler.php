@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Exceptions;
-
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
-
+use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 class Handler extends ExceptionHandler
 {
     /**
@@ -50,6 +50,25 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // dd($exception->getMessage());
+        // dd($exception->getMessage() );
+        // dd($exception->getCode());
+         if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException) {
+            return response()->json(
+                ['msg' => 'Token Invalid'],401
+            );
+        }
+        else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException){
+            return response()->json(
+                ['msg' => 'Token Invalid'],401
+            );
+        }
+        else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\TokenInvalidException){
+            return response()->json(
+                ['msg' => 'Token Invalid'],401
+            );
+        }
+        
         return parent::render($request, $exception);
     }
 }
