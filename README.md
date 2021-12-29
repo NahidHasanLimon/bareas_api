@@ -8,3 +8,8 @@
 #### 1. Laravel Echo
 #### 2. Laravel websockets https://beyondco.de/docs/laravel-websockets/getting-started/introduction
 #### 3. JWT
+
+
+
+
+# PostMan Collection Link https://www.getpostman.com/collections/93f2c132ec6fd23aa316
