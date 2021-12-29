@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::get('/get/last-ten-areas/check/websocket','AreaController@get_last_ten_rows');
 Route::post('/login','AuthController@authenticate');
+
 Route::middleware('jwt.auth')->get(
     '/area', 'AreaController@index'
+);
+Route::middleware('jwt.auth')->post(
+    '/save/area/check/websocket', 'AreaController@store'
 );
 

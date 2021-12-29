@@ -55,17 +55,17 @@ class Handler extends ExceptionHandler
         // dd($exception->getCode());
          if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException) {
             return response()->json(
-                ['msg' => 'Token Invalid'],401
+                ['msg' => 'Token Invalid or Expired'],401
             );
         }
         else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException){
             return response()->json(
-                ['msg' => 'Token Invalid'],401
+                ['msg' => 'Token Invalid Expired'],401
             );
         }
         else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\TokenInvalidException){
             return response()->json(
-                ['msg' => 'Token Invalid'],401
+                ['msg' => 'Token Invalid Expired'],401
             );
         }
         

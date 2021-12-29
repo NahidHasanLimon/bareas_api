@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AreaResource;
 use App\Area;
+use App\Events\SendAreaList;
 use Illuminate\Http\Request;
-
+use DB;
 class AreaController extends Controller
 {
     /**
@@ -37,8 +38,21 @@ class AreaController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        $area = new Area();
+        Area::create($request->all());
+        $last_ten_areas = Area::latest()->take(5)->get();
+        $last_ten_areas = $last_ten_areas->toArray();
+        event(new SendAreaList($last_ten_areas));
 
+    }
+    public function get_last_ten_rows(Request $request)
+    {
+        $last_ten_areas = Area::latest()->take(5)->get();
+        $last_ten_areas = $last_ten_areas->toArray();
+        event(new SendAreaList($last_ten_areas));
+
+    }
+    
     /**
      * Display the specified resource.
      *
